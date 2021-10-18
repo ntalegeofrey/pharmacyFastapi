@@ -9,6 +9,7 @@ from accountant import accountanrouter
 from expenses import expensesrouter
 from expensegroup import exgrouprouter
 from medicine import medicrouter
+from payment import payrouter
 
 app = FastAPI()
 
@@ -36,3 +37,5 @@ app.include_router(accountanrouter.router)
 app.include_router(expensesrouter.router)
 app.include_router(exgrouprouter.router)
 app.include_router(medicrouter.router)
+
+app.include_router(payrouter.router)
