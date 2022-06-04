@@ -1,22 +1,20 @@
 from typing import Optional, List
 from pydantic import BaseModel
-from .pharmacyschema import CreatePharmacy
+from .pharmacyschema import PharmacySchema
 
-class RegisterUser(BaseModel):
+class UserSchema(BaseModel):
+    id: Optional[int]
     name: str
     email: str
-    password: str
     is_active: Optional[bool]
     is_staff: Optional[bool]
 
-
-class UserList(BaseModel):
-    name: str
-    email: str
+class UserCreateDto(UserSchema):
     password: str
-    is_active: Optional[bool]
-    is_staff: Optional[bool]
-    pharmacy = CreatePharmacy
+
+
+class UserList(UserSchema):
+    pharmacy = PharmacySchema
 
 
 class GroupSchema(BaseModel):

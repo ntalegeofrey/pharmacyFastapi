@@ -13,3 +13,8 @@ class MedicineSchema(BaseModel):
     effects: str
     e_date: str
     pharmacy_id: int
+
+class MedicineCategorySchema(BaseModel):
+    category: str
+    description: str
+    pharmacy_id: int

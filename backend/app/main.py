@@ -1,15 +1,15 @@
+import uvicorn
 from fastapi import FastAPI
 from config.database import create_table
-from users import usersrouter
-from auth import authrouter
-from pharmacy import pharmacyrouter
-from group import grouprouter
-from usergroup import usergrouprouter
-from accountant import accountanrouter
-from expenses import expensesrouter
-from expensegroup import exgrouprouter
-from medicine import medicrouter
-from payment import payrouter
+from routes.users import usersroutes
+from routes.auth import authrouter
+from routes.group import grouprouter
+from routes.usergroup import usergrouprouter
+from routes.pharmacy import pharmacyrouter
+from routes.medicine import medicinerouter
+from routes.medicinecategory import medicategory
+from routes.accountant import accountantrouter
+
 
 app = FastAPI()
 
@@ -23,19 +23,14 @@ async def table_all():
 def Hello():
     return "Hello"
 
-
-app.include_router(usersrouter.router)
 app.include_router(authrouter.router)
-
-app.include_router(pharmacyrouter.router)
-
+app.include_router(usersroutes.router)
 app.include_router(grouprouter.router)
-
 app.include_router(usergrouprouter.router)
+app.include_router(pharmacyrouter.router)
+app.include_router(medicinerouter.router)
+app.include_router(medicategory.router)
+app.include_router(accountantrouter.router)
 
-app.include_router(accountanrouter.router)
-app.include_router(expensesrouter.router)
-app.include_router(exgrouprouter.router)
-app.include_router(medicrouter.router)
-
-app.include_router(payrouter.router)
+if __name__ == "__main__":
+    uvicorn.run("main:app", reload=True)
